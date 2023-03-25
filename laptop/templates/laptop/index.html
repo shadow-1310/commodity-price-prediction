@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Laptop Price Predictor</title>
+  </head>
+  <body>
+    <h1></h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head xmlns="http://www.w3.org/1999/xhtml">
+        <meta charset="UTF-8">
+        <title>Laptop Price Predictor</title>
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    
+    </head>
+    <body class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Laptop Price Prediction</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Other Predictors
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="{% url 'car_home' %}">Car Price Predictor</a></li>
+                      <li><a class="dropdown-item" href="{% url 'laptop_home' %}">Laptop Price Predictor</a></li>
+                      <li><a class="dropdown-item" href="#">Coming Soon</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About Me</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    <div class="container">
+        <div class="row">
+            <div class="card mt-50" style="width: 100%; height: 100%">
+                <div class="card-header" style="text-align: center">
+                    <h1>Welcome to Laptop Price Predictor</h1>
+                </div>
+                <div class="card-body">
+                    <div class="col-12" style="text-align: center">
+                        <h5>This app predicts the approximate price of a laptop you want to buy. Try filling the details below: </h5>
+                    </div>
+                    <br>
+                    <form method="post" accept-charset="utf-8" name="Modelform">{% csrf_token %}
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Select the company:</b> </label><br>
+                            <select class="selectpicker form-control" id="company" name="company" required="1">
+                                {% for company in companies %}
+                                <option value="{{ company }}">{{ company }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Select the Laptop type:</b> </label><br>
+                            <select class="selectpicker form-control" id="type" name="type" required="1">
+                              {% for type in types %}
+                                <option value="{{ type }}">{{ type }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Select Required RAM size:</b> </label><br>
+                            <select class="selectpicker form-control" id="ram" name="ram" required="1">
+                                {% for r in ram %}
+                                <option value="{{ r }}">{{ r }} GB</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Select CPU Brand:</b> </label><br>
+                            <select class="selectpicker form-control" id="cpu" name="cpu" required="1">
+                                {% for c in cpu %}
+                                <option value="{{ c }}">{{ c }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Select the Required GPU:</b> </label><br>
+                            <select class="selectpicker form-control" id="gpu" name="gpu" required="1">
+                                {% for g in gpu %}
+                                <option value="{{ g }}">{{ g }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Select HDD size:</b> </label><br>
+                            <select class="selectpicker form-control" id="hdd" name="hdd" required="1">
+                                {% for h in hdd %}
+                                <option value="{{ h }}">{{ h }} GB</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Select SSD size:</b> </label><br>
+                            <select class="selectpicker form-control" id="ssd" name="ssd" required="1">
+                                {% for s in ssd %}
+                                <option value="{{ s }}">{{ s }} GB</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                          <label><b>Does it require IPS display:</b> </label><br>
+                          <select class="selectpicker form-control" id="ips" name="ips" required="1">
+ 
+                              <option value=0>No</option>
+                              <option value=1>Yes</option>
+                  
+                          </select>
+                      </div>
+                      <div class="col-md-10 form-group" style="text-align: center">
+                        <label><b>Does it require Touchscreen display:</b> </label><br>
+                        <select class="selectpicker form-control" id="touchscreen" name="touchscreen" required="1">
+
+                            <option value=0>No</option>
+                            <option value=1>Yes</option>
+                
+                        </select>
+                    </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <label><b>Enter the prefereed ppi:</b> </label><br>
+                            <input type="text" class="form-control" id="ppi" name="ppi"
+                                   placeholder="Enter the ppi ">
+                        </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                          <label><b>Enter the approximate weight:</b> </label><br>
+                          <input type="text" class="form-control" id="weight" name="weight"
+                                 placeholder="Enter the prefereed weight">
+                      </div>
+                      <div class="col-md-10 form-group" style="text-align: center">
+                        <label><b>Select Operating System:</b> </label><br>
+                        <select class="selectpicker form-control" id="os" name="os" required="1">
+                            {% for o in os %}
+                            <option value="{{ o }}">{{ o }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                        <div class="col-md-10 form-group" style="text-align: center">
+                            <button  class="btn btn-primary form-control" onclick="send_data()">Predict Price</button>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="row">
+                        <div class="col-12" style="text-align: center">
+                            <h4><span id="prediction"></span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        
+        function form_handler(event) {
+            event.preventDefault(); // Don't submit the form normally
+        }
+        function send_data()
+        {
+            document.querySelector('form').addEventListener("submit",form_handler);
+    
+            var fd=new FormData(document.querySelector('form'));
+    
+            var xhr= new XMLHttpRequest({mozSystem: true});
+    
+            xhr.open('POST','predict',true);
+            document.getElementById('prediction').innerHTML="Wait! Predicting Price.....";
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == XMLHttpRequest.DONE){
+                    document.getElementById('prediction').innerHTML="Prediction: ₹"+xhr.responseText;
+    
+                }
+            };
+    
+            xhr.onload= function(){};
+    
+            xhr.send(fd);
+        }
+    </script>
+    
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+    </html>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
