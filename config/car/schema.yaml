@@ -1,0 +1,28 @@
+input_columns:
+  numeric:
+    year: int64
+    km_driven: int64
+  categorical:
+    name: object
+    fuel: object
+    seller_type: object
+    transmission: object
+    owner: object
+
+target_column:
+  selling_price: int64
+
+
+transformed_cols:
+  numeric: 
+    year: int64
+    km_driven: int64
+  categorical:
+    company: object
+    fuel: object
+    seller_type: object
+    transmission: object
+    owner: object
+  target_column:
+    selling_price: int64
+

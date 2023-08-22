@@ -1,0 +1,28 @@
+artifacts_root: artifacts/car
+
+
+data_ingestion:
+  root_dir: artifacts/car/data_ingestion
+  source_URL: https://github.com/shadow-1310/data/raw/main/goodreads10k.zip
+  local_data_file: artifacts/car/data_ingestion/data.zip
+  unzip_dir: artifacts/car/data_ingestion
+
+
+
+data_validation:
+  root_dir: artifacts/car/data_validation
+  STATUS_FILE: artifacts/car/data_validation/status.txt
+  unzip_data_dir: artifacts/car/data_ingestion/cars.csv
+    
+
+
+
+
+data_transformation:
+  root_dir: artifacts/car/data_transformation
+  unzip_data_dir: artifacts/car/data_ingestion/cars.csv
+  transformed_data_dir:
+    clean_data: artifacts/car/data_transformation/clean_cars.csv
+    train_data: artifacts/car/data_transformation/train.csv
+    test_data: artifacts/car/data_transformation/test.csv
+    transformer: artifacts/car/data_transformation/transformer.joblib
