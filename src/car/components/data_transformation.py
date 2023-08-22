@@ -131,6 +131,7 @@ class DataTransformation:
                     ('ohe', OneHotEncoder(sparse_output=False, handle_unknown='ignore'), cat_cols),
                     ('scaler', MinMaxScaler(), numeric_cols)
                                                             ], remainder='passthrough')
+            transformer.fit(data)
 
             joblib.dump(transformer, output_path)
             logger.info(f"transformer saved to {output_path}")

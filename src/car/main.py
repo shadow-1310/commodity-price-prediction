@@ -1,16 +1,8 @@
-# from src.car import logger
-# from src.car.pipeline.stage1_data_ingestion import DataIngestionPipeline
-# from src.car.pipeline.stage2_data_validation import DataValidationPipeline
-# from src.car.pipeline.stage3_data_transformation import DataTransformationPipeline
-# from src.car.pipeline.stage4_model_trainer import ModelTrainerPipeline
-# from src.car.pipeline.prediction import PredictionPipeline
-
-
 from car import logger
 from car.pipeline.stage1_data_ingestion import DataIngestionPipeline
 from car.pipeline.stage2_data_validation import DataValidationPipeline
 from car.pipeline.stage3_data_transformation import DataTransformationPipeline
-# from car.pipeline.stage4_model_trainer import ModelTrainerPipeline
+from car.pipeline.stage4_model_trainer import ModelTrainerPipeline
 
 STAGE_NAME = "DATA Ingestion Stage"
 
@@ -45,6 +37,20 @@ STAGE_NAME = "Data Transformation Stage"
 try:
     logger.info(f"<<<<< {STAGE_NAME} started >>>>>")
     obj = DataTransformationPipeline()
+    obj.main()
+    logger.info(f">>>>>> {STAGE_NAME} completed successfully <<<<<<")
+
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+
+
+STAGE_NAME = "Model Training Stage"
+
+try:
+    logger.info(f"<<<<< {STAGE_NAME} started >>>>>")
+    obj = ModelTrainerPipeline()
     obj.main()
     logger.info(f">>>>>> {STAGE_NAME} completed successfully <<<<<<")
 

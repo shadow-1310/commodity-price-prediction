@@ -1,6 +1,6 @@
 from car.constants import *
 from car.utils.common import read_yaml, create_directories
-from car.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
+from car.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainConfig
 from car import logger
 
 class ConfigurationManager:
@@ -66,7 +66,7 @@ class ConfigurationManager:
     def get_model_train_config(self) -> ModelTrainConfig:
         config = self.config.model_train
         schema = self.schema
-        params = self.params.model_train
+        params = self.params
 
         create_directories([config.root_dir])
 

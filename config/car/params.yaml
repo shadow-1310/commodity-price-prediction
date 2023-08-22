@@ -4,37 +4,38 @@ data_transformation:
 
 model_training:
   rf: 
-    model_name: Random Forrest
-    max_features:
-      - sqrt
-      - log2
-      - None
-    n_estimators:
-      - 8
-      - 16
-      - 32
-      - 64
-      - 128
-      - 256
+    max_features: sqrt
+    # max_features: log2
+    # max_features: None
+
+
+    n_estimators: 8
+    # n_estimators: 16
+    # n_estimators: 32
+    # n_estimators: 64
+    # n_estimators: 128
+    # n_estimators: 256
+
+
   gb:
-    model_name: Gradient Boost
-    learning_rate: 
-      - 0.1
-      - 0.05
-      - 0.01
-      - 0.001
-    subsample:
-      - 0.6
-      - 0.7
-      - 0.8
-      - 0.9
-    n_estimators:
-      - 8
-      - 16
-      - 32
-      - 64
-      - 128
-      - 256
+    learning_rate: 0.1
+    learning_rate: 0.05
+    learning_rate: 0.01
+    learning_rate: 0.001
+
+
+    subsample: 0.6
+    subsample: 0.7
+    subsample: 0.8
+    subsample: 0.9
+
+
+    n_estimators: 8
+    n_estimators: 16
+    n_estimators: 32
+    n_estimators: 64
+    n_estimators: 128
+    n_estimators: 256
 
   svr:
     model_name: Support Vector Regression
