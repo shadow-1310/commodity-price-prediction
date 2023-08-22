@@ -3,7 +3,7 @@ artifacts_root: artifacts/car
 
 data_ingestion:
   root_dir: artifacts/car/data_ingestion
-  source_URL: https://github.com/shadow-1310/data/raw/main/goodreads10k.zip
+  source_URL: https://github.com/shadow-1310/data/raw/main/commodity_price_prediction/cars.zip
   local_data_file: artifacts/car/data_ingestion/data.zip
   unzip_dir: artifacts/car/data_ingestion
 

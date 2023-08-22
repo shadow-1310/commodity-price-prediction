@@ -1,7 +1,7 @@
-from src.car.entity.config_entity import DataValidationConfig
-from src.car import logger
-from src.car.components.data_validation import DataValidation
-from src.car.config.configuration import ConfigurationManager
+from car.entity.config_entity import DataValidationConfig
+from car import logger
+from car.components.data_validation import DataValidation
+from car.config.configuration import ConfigurationManager
 
 STAGE_NAME = "Data Validation Stage"
 

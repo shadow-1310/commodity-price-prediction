@@ -1,15 +1,15 @@
 import os
 import joblib
-from src.car import logger
-from src.car.entity.config_entity import DataTransformationConfig
-from src.car.utils.common import clean_data
+from car import logger
+from car.entity.config_entity import DataTransformationConfig
+# from car.utils.common import clean_data
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
 class DataTransformation:
-    def __init__(self, config = DataTransformationConfig):
+    def __init__(self, config: DataTransformationConfig):
         self.config = config
         self.params = config.params
 
@@ -29,7 +29,7 @@ class DataTransformation:
             df_temp = df.dropna()
             logger.info(f"{input_path} contained null values as follows : {null_values }")
 
-            duplicate_values = df_temp.duplicated().sum())
+            duplicate_values = df_temp.duplicated().sum()
             logger.info(f"{input_path} contained {duplicate_values} duplicates")
             df_temp.drop_duplicates(inplace=True)
             df_temp.reset_index(inplace=True, drop=True)
@@ -46,19 +46,19 @@ class DataTransformation:
         try:
             config = self.config
             schema = config.schema
-            params = self.params
+            THRESH = self.params.data_transformation.drop_minority.thresh
 
             input_path = config.transformed_data_dir.clean_data
             output_path = config.transformed_data_dir.clean_data
 
             df = pd.read_csv(input_path)
-            cols = list(schema.input_columns.categorical.keys())
+            cols = list(schema.transformed_cols.categorical.keys())
             for col in cols:
-            counts = df[col].value_counts()
-            for i in counts.index:
-                if counts[i] < 10:
-                    df = df[df[col] != i]
-                    logger.info(f"Removed value: {i} in Column: {col}, as it had counts: {counts[i]}")
+                counts = df[col].value_counts()
+                for i in counts.index:
+                    if counts[i] < THRESH:
+                        df = df[df[col] != i]
+                        logger.info(f"Removed value: {i} in Column: {col}, as it had counts: {counts[i]}")
 
             df.to_csv(output_path, index=False)
             logger.info(f"New file after removing minority saved to: {output_path}")

@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from recSys import logger
+from car import logger
 import json
 import joblib
 from ensure import ensure_annotations

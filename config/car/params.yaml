@@ -1,6 +1,6 @@
 data_transformation:
   drop_minority:
-    thresh: 10
+    thresh: 2
 
 model_training:
   rf: 

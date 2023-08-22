@@ -1,8 +1,8 @@
-from src.car import logger
-from src.car.utils.common import get_size
+from car import logger
+from car.utils.common import get_size
 import zipfile
 from urllib import request
-from src.car.entity.config_entity import (DataIngestionConfig)
+from car.entity.config_entity import (DataIngestionConfig)
 import os
 from pathlib import Path
 

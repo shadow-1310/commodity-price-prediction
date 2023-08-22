@@ -1,7 +1,8 @@
-from src.car.entity.config_entity import DataTransformationConfig
-from src.car import logger
-from src.car.components.data_transformation import DataTransformation
-from src.car.config.configuration import ConfigurationManager
+from car.entity.config_entity import DataTransformationConfig
+from car import logger
+from car.components.data_transformation import DataTransformation
+from car.config.configuration import ConfigurationManager
+
 
 STAGE_NAME = "Data Transformation Stage"
 
@@ -15,8 +16,8 @@ class DataTransformationPipeline:
         
         data_transformation = DataTransformation(config = data_transformation_config)
         data_transformation.clean_data()
-        data_transformation.drop_minority()
         data_transformation.split_name()
+        data_transformation.drop_minority()
         data_transformation.train_test_split()
         data_transformation.build_transformer()
 

@@ -1,6 +1,6 @@
-from src.car.config.configuration import ConfigurationManager
-from src.car.components.data_ingestion import DataIngestion
-import src.car import logger
+from car.config.configuration import ConfigurationManager
+from car.components.data_ingestion import DataIngestion
+from car import logger
 
 STAGE_NAME = "Data Ingestion Stage"
 

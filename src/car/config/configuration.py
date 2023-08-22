@@ -1,7 +1,7 @@
-from src.car.constants import *
-from src.car.utils.common import read_yaml, create_directories
-from src.car.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainConfig, PredictionConfig
-from src.car import logger
+from car.constants import *
+from car.utils.common import read_yaml, create_directories
+from car.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig
+from car import logger
 
 class ConfigurationManager:
     def __init__(
@@ -55,8 +55,8 @@ class ConfigurationManager:
 
             data_transformation_config = DataTransformationConfig(
                 root_dir = config.root_dir,
-                STATUS_FILE = config.STATUS_FILE,
                 unzip_data_dir = config.unzip_data_dir,
+                transformed_data_dir = config.transformed_data_dir,
                 schema = schema,
                 params=params)
             
