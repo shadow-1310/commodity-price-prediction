@@ -26,3 +26,14 @@ class DataTransformationConfig:
     transformed_data_dir: Path
     schema: dict
     params: dict
+
+
+
+@dataclass(frozen=True)
+class ModelTrainConfig:
+    train_path : Path
+    test_path : Path
+    model_path: Path
+    transformer_path: Path
+    schema: dict
+    params: dict

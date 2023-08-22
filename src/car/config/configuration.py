@@ -61,3 +61,21 @@ class ConfigurationManager:
                 params=params)
             
             return data_transformation_config
+
+
+    def get_model_train_config(self) -> ModelTrainConfig:
+        config = self.config.model_train
+        schema = self.schema
+        params = self.params.model_train
+
+        create_directories([config.root_dir])
+
+        model_train_config = ModelTrainConfig(
+                train_path = config.train_path,
+                test_path = config.test_path,
+                model_path = config.model_path,
+                transformer_path = config.transformer_path,
+                schema = schema.transformed_cols,
+                params = params.model_training)
+
+        return model_train_config
