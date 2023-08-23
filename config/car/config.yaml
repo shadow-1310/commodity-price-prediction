@@ -34,3 +34,12 @@ model_train:
   test_path: artifacts/car/data_transformation/test.csv
   transformer_path: artifacts/car/data_transformation/transformer.joblib
   model_path: artifacts/car/model_train/model.joblib
+
+
+model_evaluation:
+  root_dir: artifacts/car/model_evaluation
+  test_path: artifacts/car/data_transformation/test.csv
+  model_path: artifacts/car/model_train/model.joblib
+  transformer_path: artifacts/car/data_transformation/transformer.joblib
+  metric_path: artifacts/car/model_evaluation/metrics.json
+  mlflow_uri: https://dagshub.com/shadow-1310/commodity-price-prediction.mlflow

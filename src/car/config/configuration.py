@@ -1,6 +1,6 @@
 from car.constants import *
 from car.utils.common import read_yaml, create_directories
-from car.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainConfig
+from car.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainConfig, ModelEvaluationConfig
 from car import logger
 
 class ConfigurationManager:
@@ -79,3 +79,23 @@ class ConfigurationManager:
                 params = params.model_training)
 
         return model_train_config
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config.model_evaluation
+        params = self.params
+        schema = self.schema
+
+        target_col = list(schema.transformed_cols.target_column.keys())[0]
+        create_directories([config.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+                root_dir = config.root_dir,
+                test_path = config.test_path,
+                model_path = config.model_path,
+                transformer_path = config.transformer_path,
+                metric_file = config.metric_path,
+                mlflow_uri = config.mlflow_uri,
+                params = params,
+                target_col = target_col)
+
+        return model_evaluation_config

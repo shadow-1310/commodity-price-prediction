@@ -9,12 +9,12 @@ model_training:
     # max_features: None
 
 
-    n_estimators: 8
+    # n_estimators: 8
     # n_estimators: 16
     # n_estimators: 32
     # n_estimators: 64
     # n_estimators: 128
-    # n_estimators: 256
+    n_estimators: 256
 
 
   gb:

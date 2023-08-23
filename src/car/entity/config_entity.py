@@ -37,3 +37,15 @@ class ModelTrainConfig:
     transformer_path: Path
     schema: dict
     params: dict
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir : Path
+    test_path : Path
+    model_path : Path
+    transformer_path: Path
+    metric_file : Path
+    mlflow_uri: str
+    params: dict
+    target_col: str
