@@ -5,7 +5,7 @@ from car.pipeline.stage3_data_transformation import DataTransformationPipeline
 from car.pipeline.stage4_model_trainer import ModelTrainerPipeline
 from car.pipeline.stage_05_model_evaluation import ModelEvaluationPipeline
 
-STAGE_NAME = "DATA Ingestion Stage"
+STAGE_NAME = "Data Ingestion Stage"
 
 try:
     logger.info(f"<<<<< {STAGE_NAME} started >>>>>")
