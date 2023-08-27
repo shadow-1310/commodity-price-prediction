@@ -4,17 +4,17 @@ data_transformation:
 
 model_training:
   rf: 
-    max_features: sqrt
+    # max_features: sqrt
     # max_features: log2
-    # max_features: None
+    max_features: null #null is read as None
 
 
-    # n_estimators: 8
+    n_estimators: 8
     # n_estimators: 16
     # n_estimators: 32
     # n_estimators: 64
     # n_estimators: 128
-    n_estimators: 256
+    # n_estimators: 256
 
 
   gb:
